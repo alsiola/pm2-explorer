@@ -7,7 +7,7 @@
         "type": "git",
         "url": "https://github.com/alsiola/pm2-explorer.git"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "alex-young",
     "engines": {
         "vscode": "^1.27.0"

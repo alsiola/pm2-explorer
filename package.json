@@ -1,0 +1,131 @@
+{
+    "name": "pm2-explorer",
+    "displayName": "Pm2 Explorer",
+    "description": "Manage PM2 within VSCode",
+    "version": "0.0.1",
+    "publisher": "alex-young",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onView:pm2-processes"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "pm2-container",
+                    "title": "PM2 Explorer",
+                    "icon": "resources/container-icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "pm2-container": [
+                {
+                    "id": "pm2-processes",
+                    "name": "Running Processes"
+                }
+            ]
+        },
+        "menus": {
+            "view/item/context": [
+                {
+                    "when": "viewItem == pm2-process",
+                    "command": "pm2.reload",
+                    "group": "pm2"
+                },
+                {
+                    "when": "viewItem == pm2-process",
+                    "command": "pm2.logs",
+                    "group": "pm2"
+                },
+                {
+                    "when": "viewItem == pm2-process",
+                    "command": "pm2.start",
+                    "group": "pm2"
+                },
+                {
+                    "when": "viewItem == pm2-process",
+                    "command": "pm2.stop",
+                    "group": "pm2"
+                }
+            ],
+            "view/title": [
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.reloadAll",
+                    "group": "pm2"
+                },
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.logsAll",
+                    "group": "pm2"
+                },
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.refresh",
+                    "group": "pm2"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "pm2.start",
+                "title": "Process: Start",
+                "category": "pm2"
+            },
+            {
+                "command": "pm2.stop",
+                "title": "Process: Stop",
+                "category": "pm2"
+            },
+            {
+                "command": "pm2.reload",
+                "title": "Process: Reload",
+                "category": "pm2"
+            },
+            {
+                "command": "pm2.logs",
+                "title": "Process: View Logs",
+                "category": "pm2"
+            },
+            {
+                "command": "pm2.reloadAll",
+                "title": "Processes: Reload All",
+                "category": "pm2.container"
+            },
+            {
+                "command": "pm2.logsAll",
+                "title": "Processes: Logs",
+                "category": "pm2.container"
+            },
+            {
+                "command": "pm2.refresh",
+                "title": "Refresh List",
+                "category": "pm2.container"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "tslint": "^5.8.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "pm2": "^3.1.3"
+    }
+}

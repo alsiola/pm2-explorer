@@ -2,6 +2,11 @@
     "name": "pm2-explorer",
     "displayName": "Pm2 Explorer",
     "description": "Manage PM2 within VSCode",
+    "icon": "resources/logo.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/alsiola/pm2-explorer.git"
+    },
     "version": "0.0.1",
     "publisher": "alex-young",
     "engines": {

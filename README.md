@@ -6,11 +6,12 @@ View and interact with currently running PM2 processes within VSCode.
 
 Adds a PM2 Explorer view that lists current PM2 processes and important details about them.
 
-Allows interaction with running processes:
-_ Start
-_ Stop
-_ Restart
-_ View Logs (in integrated terminal)
+Allows interaction with running processes: 
+
+    - Start
+    - Stop
+    - Restart
+    - View Logs (in integrated terminal)
 
 ## Requirements
 
@@ -25,6 +26,11 @@ No settings.
 No known issues
 
 ## Release Notes
+
+### 0.0.2
+
+Fix errors in readme
+Add logo
 
 ### 0.0.1
 

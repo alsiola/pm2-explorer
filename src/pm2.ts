@@ -109,7 +109,7 @@ Error: ${err.message}`);
         console.log("Getting children");
         if (!element) {
             return this._processes.map(
-                process => new Process(process, this._pm2)
+                process => new Process(process, this._pm2, this._context)
             );
         }
         return element.children;
@@ -117,7 +117,7 @@ Error: ${err.message}`);
 }
 
 const getProcessLabel = (process: nodePm2.ProcessDescription): string => {
-    return `${process.name}`;
+    return process.name!;
 };
 
 export class Process extends vscode.TreeItem {
@@ -126,7 +126,8 @@ export class Process extends vscode.TreeItem {
 
     constructor(
         public readonly process: nodePm2.ProcessDescription,
-        private readonly _pm2: Promise<typeof nodePm2>
+        private readonly _pm2: Promise<typeof nodePm2>,
+        private _context: vscode.ExtensionContext
     ) {
         super(
             getProcessLabel(process),
@@ -157,6 +158,23 @@ export class Process extends vscode.TreeItem {
                 )
             )
         );
+    }
+
+    get iconPath(): string | undefined {
+        const { status } = this.process.pm2_env!;
+
+        switch (status) {
+            case "errored":
+            case "online":
+            case "stopped":
+                return this._context.asAbsolutePath(
+                    join("resources", `${status}.png`)
+                );
+            case "launching":
+                return this._context.asAbsolutePath(
+                    join("resources", `${status}.gif`)
+                );
+        }
     }
 
     get tooltip(): string {

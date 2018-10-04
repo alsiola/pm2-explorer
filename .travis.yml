@@ -1,0 +1,26 @@
+language: node_js
+
+stages:
+  - lint
+  - test
+  - compile
+  - name: deploy
+    if: branch = master AND type != pull_request
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+    - yarn install
+
+jobs:
+  include:
+    - stage: build
+      script:
+        - yarn lint
+        - yarn test
+        - yarn build
+    - stage: deploy
+      script:
+        - yarn deploy

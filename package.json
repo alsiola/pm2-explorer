@@ -3,11 +3,12 @@
     "displayName": "Pm2 Explorer",
     "description": "Manage PM2 within VSCode",
     "icon": "resources/logo.png",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/alsiola/pm2-explorer.git"
     },
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "alex-young",
     "engines": {
         "vscode": "^1.27.0"
@@ -121,7 +122,9 @@
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+        "test": "npm run compile && node ./node_modules/vscode/bin/test",
+        "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
+        "deploy": "vsce publish -p $AZURE_PAT"
     },
     "devDependencies": {
         "typescript": "^2.6.1",

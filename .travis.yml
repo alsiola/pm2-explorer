@@ -5,7 +5,7 @@ stages:
   - test
   - compile
   - name: deploy
-    if: branch = master
+    if: branch = master AND type != pull_request
 
 cache:
   directories:
@@ -23,5 +23,4 @@ jobs:
         - yarn build
     - stage: deploy
       script:
-        - yarn global add vsce
-        - vsce publish -p $AZURE_PAT
+        - yarn deploy

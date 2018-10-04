@@ -24,4 +24,4 @@ jobs:
     - stage: deploy
       script:
         - yarn global add vsce
-        - vsce publish
+        - vsce publish -p $AZURE_PAT

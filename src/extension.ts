@@ -4,10 +4,12 @@
 import * as vscode from "vscode";
 import { PM2, Process } from "./pm2";
 
+let pm2: PM2;
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-    const pm2 = new PM2(context);
+    pm2 = new PM2(context);
 
     vscode.window.registerTreeDataProvider("pm2-processes", pm2);
 
@@ -41,4 +43,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+    pm2.dispose();
+}

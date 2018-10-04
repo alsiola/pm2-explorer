@@ -1,5 +1,12 @@
 language: node_js
 
+stages:
+  - lint
+  - test
+  - compile
+  - name: deploy
+    if: branch = master
+
 cache:
   directories:
     - "node_modules"
@@ -7,7 +14,18 @@ cache:
 install:
     - yarn install
 
-script:
-    - yarn lint
-    - yarn test
-    - yarn build
+jobs:
+  include:
+    - stage: lint
+      script:
+        - yarn lint
+    - stage: test
+      script:
+        - yarn test
+    - stage: compile
+      script:
+        - yarn build
+    - stage: deploy
+      script:
+        - yarn global add vsce
+        - vsce publish

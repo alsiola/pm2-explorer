@@ -16,14 +16,10 @@ install:
 
 jobs:
   include:
-    - stage: lint
+    - stage: build
       script:
         - yarn lint
-    - stage: test
-      script:
         - yarn test
-    - stage: compile
-      script:
         - yarn build
     - stage: deploy
       script:

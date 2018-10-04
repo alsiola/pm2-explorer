@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.com/alsiola/pm2-explorer.svg?branch=master)
+
 # PM2 Explorer README
 
 View and interact with currently running PM2 processes within VSCode.

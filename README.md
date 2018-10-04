@@ -8,15 +8,15 @@ Adds a PM2 Explorer view that lists current PM2 processes and important details 
 
 Allows interaction with individual running processes: 
 
-    * Start
-    * Stop
-    * Restart
-    * View Logs (in integrated terminal)
+ * Start
+ * Stop
+ * Restart
+ * View Logs (in integrated terminal)
 
 And with *all* running processes:
-    
-    * Reload all
-    * View all logs
+
+ * Reload all
+ * View all logs
 
 ## Requirements
 

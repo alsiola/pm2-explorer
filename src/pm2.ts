@@ -1,3 +1,4 @@
+import { join } from "path";
 import * as nodePm2 from "pm2";
 import * as vscode from "vscode";
 
@@ -21,7 +22,8 @@ const showMsg = (msg: string) => {
 const showErr = (msg: string) =>
     vscode.window.showErrorMessage(`PM2 Explorer: ${msg}`);
 
-export class PM2 implements vscode.TreeDataProvider<vscode.TreeItem> {
+export class PM2
+    implements vscode.TreeDataProvider<vscode.TreeItem>, vscode.Disposable {
     private _onDidChangeTreeData: vscode.EventEmitter<
         Process | undefined
     > = new vscode.EventEmitter<Process | undefined>();
@@ -31,10 +33,11 @@ export class PM2 implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     private _pm2!: Promise<typeof nodePm2>;
     private _processes: nodePm2.ProcessDescription[] = [];
+    private _refreshInterval: NodeJS.Timer;
 
-    constructor(_context: vscode.ExtensionContext) {
+    constructor(private _context: vscode.ExtensionContext) {
         this.init();
-        this.listProcesses();
+        this._refreshInterval = setInterval(() => this.listProcesses(), 1000);
     }
 
     private init() {
@@ -52,6 +55,10 @@ Error: ${err.message}`);
                 resolve(nodePm2);
             });
         }));
+    }
+
+    dispose() {
+        clearInterval(this._refreshInterval);
     }
 
     logs(process?: nodePm2.ProcessDescription) {

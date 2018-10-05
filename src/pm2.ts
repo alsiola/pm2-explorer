@@ -34,10 +34,19 @@ export class PM2
     private _pm2!: Promise<typeof nodePm2>;
     private _processes: nodePm2.ProcessDescription[] = [];
     private _refreshInterval: NodeJS.Timer;
+    private _isRefreshing = false;
 
     constructor(private _context: vscode.ExtensionContext) {
         this.init();
-        this._refreshInterval = setInterval(() => this.listProcesses(), 1000);
+        this._refreshInterval = setInterval(() => {
+            if (this._isRefreshing) {
+                return;
+            }
+            this._isRefreshing = true;
+            this.listProcesses().then(() => {
+                this._isRefreshing = false;
+            });
+        }, 1000);
     }
 
     private init() {
@@ -100,13 +109,18 @@ Error: ${err.message}`);
 
     listProcesses() {
         console.log("Retrieving PM2 processes");
-        this._pm2.then(pm2 => {
-            pm2.list(
-                errCallback(processes => {
-                    console.log(`Retrieved ${processes.length} PM2 processes`);
-                    this._processes = processes;
-                    this._onDidChangeTreeData.fire();
-                })
+        return this._pm2.then(pm2 => {
+            return new Promise(resolve =>
+                pm2.list(
+                    errCallback(processes => {
+                        resolve();
+                        console.log(
+                            `Retrieved ${processes.length} PM2 processes`
+                        );
+                        this._processes = processes;
+                        this._onDidChangeTreeData.fire();
+                    }, resolve)
+                )
             );
         });
     }

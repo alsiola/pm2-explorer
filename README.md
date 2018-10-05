@@ -2,7 +2,7 @@
 
 # PM2 Explorer README
 
-View and interact with currently running PM2 processes within VSCode.  This extension can be installed from within VSCode by searching for `pm2` in the extensions view, or via the [https://marketplace.visualstudio.com/items?itemName=alex-young.pm2-explorer](Visual Studio Marketplace).
+View and interact with currently running PM2 processes within VSCode.  This extension can be installed from within VSCode by searching for `pm2` in the extensions view, or via the (https://marketplace.visualstudio.com/items?itemName=alex-young.pm2-explorer)[Visual Studio Marketplace].
 
 ## Features
 
@@ -41,19 +41,19 @@ No known issues
 
 ## Release Notes
 ### 0.0.4
-Improved process icons
-Configurable refresh interval
-Added start all and stop all commands
+* Improved process icons
+* Configurable refresh interval
+* Added start all and stop all commands
 
 ### 0.0.3
 
-Visual representation of process state
+* Visual representation of process state
 
 ### 0.0.2
 
-Fix errors in readme
-Add logo
+* Fix errors in readme
+* Add logo
 
 ### 0.0.1
 
-Initial release of PM2 Explorer
+* Initial release of PM2 Explorer

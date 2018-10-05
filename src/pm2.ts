@@ -75,6 +75,18 @@ Error: ${err.message}`);
         });
     }
 
+    startAll() {
+        this._pm2.then(pm2 => {
+            pm2.start({}, errCallback());
+        });
+    }
+
+    stopAll() {
+        this._pm2.then(pm2 => {
+            pm2.stop("all", errCallback());
+        });
+    }
+
     reload(process: nodePm2.ProcessDescription) {
         this._pm2.then(pm2 => {
             pm2.reload(
@@ -93,7 +105,6 @@ Error: ${err.message}`);
                 errCallback(processes => {
                     console.log(`Retrieved ${processes.length} PM2 processes`);
                     this._processes = processes;
-                    console.log(this._processes[0].pm2_env!.pm_uptime);
                     this._onDidChangeTreeData.fire();
                 })
             );
@@ -113,7 +124,6 @@ Error: ${err.message}`);
     getChildren(
         element?: Process | undefined
     ): vscode.ProviderResult<vscode.TreeItem[]> {
-        console.log("Getting children");
         if (!element) {
             return this._processes.map(
                 process => new Process(process, this._pm2, this._context)

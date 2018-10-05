@@ -33,6 +33,14 @@ export function activate(context: vscode.ExtensionContext) {
         pm2.logs();
     });
 
+    vscode.commands.registerCommand("pm2.startAll", () => {
+        pm2.startAll();
+    });
+
+    vscode.commands.registerCommand("pm2.stopAll", () => {
+        pm2.stopAll();
+    });
+
     vscode.commands.registerCommand("pm2.reloadAll", () => {
         pm2.reloadAll();
     });

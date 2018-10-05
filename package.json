@@ -76,6 +76,16 @@
                     "when": "view == pm2-processes",
                     "command": "pm2.refresh",
                     "group": "pm2"
+                },
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.startAll",
+                    "group": "pm2"
+                },
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.stopAll",
+                    "group": "pm2"
                 }
             ]
         },
@@ -113,6 +123,16 @@
             {
                 "command": "pm2.refresh",
                 "title": "Refresh List",
+                "category": "pm2.container"
+            },
+            {
+                "command": "pm2.startAll",
+                "title": "Processes: Start All",
+                "category": "pm2.container"
+            },
+            {
+                "command": "pm2.stopAll",
+                "title": "Processes: Stop All",
                 "category": "pm2.container"
             }
         ]

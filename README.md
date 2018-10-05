@@ -6,7 +6,7 @@ View and interact with currently running PM2 processes within VSCode.  This exte
 
 ## Features
 
-Adds a PM2 Explorer view that lists current PM2 processes and important details about them. The list is continously updated at a configurable interval (default 1000ms).
+Adds a PM2 Explorer view that lists current PM2 processes and important details about them. The list is updated at a configurable interval (default 1000ms).
 
 Allows interaction with individual running processes: 
 

@@ -11,6 +11,10 @@ let pm2: PM2;
 export function activate(context: vscode.ExtensionContext) {
     pm2 = new PM2(context);
 
+    vscode.workspace.onDidChangeConfiguration(() => {
+        pm2.onConfigChanged();
+    });
+
     vscode.window.registerTreeDataProvider("pm2-processes", pm2);
 
     vscode.commands.registerCommand("pm2.reload", (item: Process) => {

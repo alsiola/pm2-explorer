@@ -33,11 +33,23 @@ export class PM2
 
     private _pm2!: Promise<typeof nodePm2>;
     private _processes: nodePm2.ProcessDescription[] = [];
-    private _refreshInterval: NodeJS.Timer;
+    private _refreshInterval!: NodeJS.Timer;
     private _isRefreshing = false;
+    private _config!: vscode.WorkspaceConfiguration;
 
     constructor(private _context: vscode.ExtensionContext) {
         this.init();
+        this.onConfigChanged();
+    }
+
+    onConfigChanged() {
+        this._config = vscode.workspace.getConfiguration("pm2Explorer");
+        this.setRefreshInterval();
+    }
+
+    private setRefreshInterval() {
+        const interval = this._config.get<number>("refreshIntervalMs") || 1000;
+        console.log(`Refresh interval is now ${interval}ms`);
         this._refreshInterval = setInterval(() => {
             if (this._isRefreshing) {
                 return;
@@ -46,12 +58,12 @@ export class PM2
             this.listProcesses().then(() => {
                 this._isRefreshing = false;
             });
-        }, 1000);
+        }, interval);
     }
 
     private init() {
         console.log("Initialising PM2");
-        return (this._pm2 = new Promise(resolve => {
+        this._pm2 = new Promise(resolve => {
             nodePm2.connect(err => {
                 if (err) {
                     console.error(err);
@@ -60,10 +72,11 @@ export class PM2
 Error: ${err.message}`);
                     return;
                 }
+                this.setRefreshInterval();
                 console.log("Connected to PM2 Daemon");
                 resolve(nodePm2);
             });
-        }));
+        });
     }
 
     dispose() {

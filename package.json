@@ -135,7 +135,18 @@
                 "title": "Processes: Stop All",
                 "category": "pm2.container"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "PM2 Explorer configuration",
+            "properties": {
+                "pm2Explorer.refreshIntervalMs": {
+                    "type": "number",
+                    "default": 1000,
+                    "description": "Interval in milliseconds at which process list will be updated."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",

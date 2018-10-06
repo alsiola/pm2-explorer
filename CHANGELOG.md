@@ -5,6 +5,7 @@
     - Improved process icons
     - Configurable refresh interval
     - Added start all and stop all commands
+    - Refactor and re-organisation
 
 ### 0.0.3
 

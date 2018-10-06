@@ -1,9 +1,7 @@
 language: node_js
 
 stages:
-  - lint
-  - test
-  - compile
+  - build
   - name: deploy
     if: branch = master AND type != pull_request
 
@@ -12,7 +10,7 @@ cache:
     - "node_modules"
 
 before_install:
-  - yarn global add vsce
+  - npm install -g vsce
 
 install:
   - yarn install
@@ -21,10 +19,10 @@ jobs:
   include:
     - stage: build
       script:
-        - vsce --version
+        - $(npm config get prefix)/bin/vsce --version
         - yarn lint
         - yarn test
         - yarn build
     - stage: deploy
       script:
-        - yarn deploy
+        - $(npm config get prefix)/bin/vsce publish -p $AZURE_PAT

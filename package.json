@@ -76,6 +76,16 @@
                     "when": "view == pm2-processes",
                     "command": "pm2.refresh",
                     "group": "pm2"
+                },
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.startAll",
+                    "group": "pm2"
+                },
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.stopAll",
+                    "group": "pm2"
                 }
             ]
         },
@@ -114,8 +124,29 @@
                 "command": "pm2.refresh",
                 "title": "Refresh List",
                 "category": "pm2.container"
+            },
+            {
+                "command": "pm2.startAll",
+                "title": "Processes: Start All",
+                "category": "pm2.container"
+            },
+            {
+                "command": "pm2.stopAll",
+                "title": "Processes: Stop All",
+                "category": "pm2.container"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "PM2 Explorer configuration",
+            "properties": {
+                "pm2Explorer.refreshIntervalMs": {
+                    "type": "number",
+                    "default": 1000,
+                    "description": "Interval in milliseconds at which process list will be updated."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
@@ -123,8 +154,7 @@
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test",
-        "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
-        "deploy": "vsce publish -p $AZURE_PAT"
+        "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'"
     },
     "devDependencies": {
         "typescript": "^2.6.1",

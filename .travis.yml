@@ -22,9 +22,8 @@ jobs:
     - stage: build
       script:
         - $(npm config get prefix)/bin/vsce --version
-        - yarn lint
-        - yarn test
-        - yarn build
+        - npm run lint
+        - npm run compile
     - stage: deploy
       script:
         - $(npm config get prefix)/bin/vsce publish -p $AZURE_PAT

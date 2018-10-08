@@ -20,10 +20,3 @@ script:
   # npm ls command is broken causing vsce to fail, see:
   # https://github.com/Microsoft/vscode-vsce/issues/246
   - vsce package --yarn
-
-deploy:
-  - provider: script  
-    script: vsce publish --yarn -p $AZURE_PAT
-    skip_cleanup: true
-    on:
-      branch: master

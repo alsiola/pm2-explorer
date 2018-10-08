@@ -11,19 +11,19 @@ cache:
   directories:
     - "node_modules"
 
-before_install:
-  - npm install -g vsce
-
 install:
+  - npm install -g vsce
   - npm install
 
-jobs:
-  include:
-    - stage: build
-      script:
-        - $(npm config get prefix)/bin/vsce --version
-        - npm run lint
-        - npm run compile
-    - stage: deploy
-      script:
-        - $(npm config get prefix)/bin/vsce publish -p $AZURE_PAT
+script:
+  - npm run lint
+  # npm ls command is broken causing vsce to fail, see:
+  # https://github.com/Microsoft/vscode-vsce/issues/246
+  - vsce package --yarn
+
+deploy:
+  - provider: script  
+    script: vsce publish -p $AZURE_PAT
+    skip_cleanup: true
+    on:
+      branch: master

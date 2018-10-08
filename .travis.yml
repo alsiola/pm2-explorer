@@ -23,7 +23,7 @@ script:
 
 deploy:
   - provider: script  
-    script: vsce publish -p $AZURE_PAT
+    script: vsce publish --yarn -p $AZURE_PAT
     skip_cleanup: true
     on:
       branch: master

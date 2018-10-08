@@ -12,15 +12,16 @@ cache:
     - "node_modules"
 
 install:
-    - yarn install
+  - npm install -g vsce
+  - npm install
 
-jobs:
-  include:
-    - stage: build
-      script:
-        - yarn lint
-        - yarn test
-        - yarn build
-    - stage: deploy
-      script:
-        - yarn deploy
+script:
+  - npm run lint
+  - vsce package
+
+deploy:
+  - provider: script  
+    script: vsce publish -p $AZURE_PAT
+    skip_cleanup: true
+    on:
+      branch: master

@@ -1,9 +1,9 @@
 language: node_js
+node_js:
+  - "8"
 
 stages:
-  - lint
-  - test
-  - compile
+  - build
   - name: deploy
     if: branch = master AND type != pull_request
 

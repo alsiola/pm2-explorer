@@ -17,7 +17,9 @@ install:
 
 script:
   - npm run lint
-  - vsce package
+  # npm ls command is broken causing vsce to fail, see:
+  # https://github.com/Microsoft/vscode-vsce/issues/246
+  - vsce package --yarn
 
 deploy:
   - provider: script  

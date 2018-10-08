@@ -40,6 +40,15 @@ PM2 should be installed globally on your machine.
 No known issues
 
 ## Release Notes
+
+### 0.0.6
+
+* Restore accidentally removed container icon
+
+### 0.0.5
+
+* Re-publish broken CI deployment
+
 ### 0.0.4
 * Improved process icons
 * Configurable refresh interval

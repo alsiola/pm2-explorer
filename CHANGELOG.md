@@ -1,5 +1,13 @@
 # Change Log
 
+### 0.0.6
+
+    - Restore accidentally removed container icon
+
+### 0.0.5
+
+    - Re-publish broken CI deployment
+
 ### 0.0.4
 
     - Improved process icons

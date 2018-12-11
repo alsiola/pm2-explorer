@@ -28,7 +28,7 @@ export class PM2
                     this.setRefreshInterval();
                     resolve(nodePm2);
                 },
-                err => util.showErr("Could not connect to PM2")
+                () => util.showErr("Could not connect to PM2")
             ) as any);
         });
     }

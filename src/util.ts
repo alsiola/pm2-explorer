@@ -32,3 +32,9 @@ export const refresher = ({
     !skipIf() && fn();
     return setTimeout(refresher({ fn, interval, skipIf }), interval());
 };
+
+export const sendTerminalCommand = (command: string, show: boolean = true) => {
+    const terminal = vscode.window.createTerminal("pm2");
+    terminal.sendText(command);
+    if (show) terminal.show();
+}

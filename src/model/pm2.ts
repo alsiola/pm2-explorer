@@ -51,12 +51,13 @@ export class PM2
         this._isDisposed = true;
     }
 
+    monit() {
+        util.sendTerminalCommand("pm2 monit");
+    }
+
     logs(process?: nodePm2.ProcessDescription) {
-        const terminal = vscode.window.createTerminal("pm2");
-        terminal.sendText(
-            "pm2 logs " + (process && process.name ? process.name : "")
-        );
-        terminal.show();
+        const command = "pm2 logs " + (process && process.name ? process.name : "");
+        util.sendTerminalCommand(command);
     }
 
     reloadAll() {

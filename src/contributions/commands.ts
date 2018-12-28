@@ -18,6 +18,10 @@ export const registerCommands = (pm2: PM2) => {
         item.stop();
     });
 
+    vscode.commands.registerCommand("pm2.monit", () => {
+        pm2.monit();
+    });
+
     vscode.commands.registerCommand("pm2.logsAll", () => {
         pm2.logs();
     });

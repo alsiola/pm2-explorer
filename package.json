@@ -91,6 +91,11 @@
                     "when": "view == pm2-processes",
                     "command": "pm2.monit",
                     "group": "pm2"
+                },
+                {
+                    "when": "view == pm2-processes",
+                    "command": "pm2.flushLogs",
+                    "group": "pm2"
                 }
             ]
         },
@@ -122,7 +127,12 @@
             },
             {
                 "command": "pm2.logsAll",
-                "title": "Processes: Logs",
+                "title": "Processes: View Logs",
+                "category": "pm2.container"
+            },
+            {
+                "command": "pm2.flushLogs",
+                "title": "Processes: Flush Logs",
                 "category": "pm2.container"
             },
             {

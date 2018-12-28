@@ -54,6 +54,10 @@ export class PM2
     monit() {
         util.sendTerminalCommand("pm2 monit");
     }
+    
+    flushLogs() {
+        util.sendTerminalCommand("pm2 flush");
+    }
 
     logs(process?: nodePm2.ProcessDescription) {
         const command = "pm2 logs " + (process && process.name ? process.name : "");

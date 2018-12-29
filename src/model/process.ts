@@ -1,7 +1,7 @@
 import * as path from "path";
 import * as nodePm2 from "pm2";
 import * as vscode from "vscode";
-import { errCallback, showMsg } from "../util";
+import { errCallback, showMsg, millisecondsToReadable } from "../util";
 
 const getProcessLabel = (process: nodePm2.ProcessDescription): string => {
     return process.name!;
@@ -75,7 +75,11 @@ PID: ${this.process.pid}`;
             new vscode.TreeItem(
                 `Instances: ${this.process.pm2_env!.instances}`
             ),
-            new vscode.TreeItem(`Uptime: ${this.process.pm2_env!.pm_uptime}`),
+            new vscode.TreeItem(
+                `Uptime: ${millisecondsToReadable(
+                    Date.now() - (this.process.pm2_env!.pm_uptime || 0)
+                )}`
+            ),
             new vscode.TreeItem(
                 `Unstable restarts: ${this.process.pm2_env!.unstable_restarts}`
             )

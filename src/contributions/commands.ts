@@ -22,6 +22,10 @@ export const registerCommands = (pm2: PM2) => {
         pm2.monit();
     });
 
+    vscode.commands.registerCommand("pm2.flushLogs", () => {
+        pm2.flushLogs();
+    });
+
     vscode.commands.registerCommand("pm2.logsAll", () => {
         pm2.logs();
     });

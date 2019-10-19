@@ -54,7 +54,7 @@ export class PM2
     logs(process?: nodePm2.ProcessDescription) {
         const terminal = vscode.window.createTerminal("pm2");
         terminal.sendText(
-            "pm2 logs " + (process && process.name ? process.name : "")
+            `pm2 logs '${process && process.name ? process.name : ""}'`
         );
         terminal.show();
     }

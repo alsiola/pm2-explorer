@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.0.7
+
+    - Fix commands when tasks have whitespace
+    - Dependency vulnerability updates
+
 ### 0.0.6
 
     - Restore accidentally removed container icon
